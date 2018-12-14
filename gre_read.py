@@ -110,7 +110,7 @@ for x in num_list:
 #********* rest********************8
         # rest
         if pause > 5:
-            input("===\n Maybe a rest and review?\n===\n")
+            input("===\n Maybe a rest and review?")
             pause=0
         word[x]=word[x].rstrip()
         print(" Round ",x+1,'/',nrow)
@@ -121,7 +121,7 @@ for x in num_list:
             print(' ',word[x],"\n",explanation[x],'\n',explanation2[x],'\n',explanation3[x])
         #3000
         if index==2:
-            print(' ',word[x])
+            print(' \u3010',word[x],'\u3011')
             if explanation[x].find('\u003b')>0:
                 #print("Get this")
                 for y in explanation[x].split(';'):

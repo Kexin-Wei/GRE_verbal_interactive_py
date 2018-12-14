@@ -129,7 +129,9 @@ for x in num_list:
         # mode 1 : reprint mode
         if mode==1:
             str=input("\n Please reprint :")
-            print(comp(str,word[x]),0)
+
+            #print(comp(str,word[x]),0)
+
             while comp(str,word[x])==0:
                 if comp(str,"stop!") :
                     break

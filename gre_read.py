@@ -98,13 +98,20 @@ else:
 Continue at : Round ",num+1,"\n\
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n")
 
+#for pause after 5 words
+pause=0;
 #start learning
 for x in num_list:
     again=0
+
     if num and x<num :
         pass
     else:
-
+#********* rest********************8
+        # rest
+        if pause > 5:
+            input("===\n Maybe a rest and review?\n===\n")
+            pause=0
         word[x]=word[x].rstrip()
         print(" Round ",x+1,'/',nrow)
         print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
@@ -140,7 +147,7 @@ for x in num_list:
                 print(' ',word[x],'\n')
                 str=input(" Please reprint :")
 
-            if again and comp(str,"stop")!=0:
+            if again and comp(str,"stop")==0:
                 str=input(" Again to testify :")
                 while comp(str,word[x])==0 :
                     if comp(str,"stop!") :
@@ -158,7 +165,9 @@ for x in num_list:
             flag=input("\n Waiting.....")
             if comp(flag,"stop!") :
                 break
+        pause=pause+1
     a=x
+
 
 if a+1==nrow:
     print(" ## Congradulation!!! List Finished!! ##")

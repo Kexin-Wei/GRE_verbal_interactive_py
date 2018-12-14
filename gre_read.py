@@ -114,12 +114,12 @@ for x in num_list:
         #3000
         if index==2:
             print(' ',word[x])
-            if explanation[x].find('; '):
+            if explanation[x].find('\u003b')>0:
                 #print("Get this")
                 for y in explanation[x].split(';'):
                     print(' ',y.lstrip())
             else:
-                for y in explanation[x].split('；'):
+                for y in explanation[x].split('\uff1b'):
                     print(' ',y)
         # phrase
         if index==3:

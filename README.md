@@ -35,7 +35,7 @@ A small program showing in terminal, using interactive mode to increase the conc
 
  3. Type "stop!" to exit and the record will be noted.
 
- 4. After every 5 words will be stopped and maybe review for better equality.
+ 4.After every 5 words will be stopped and maybe review for better equality, also file autosaved.
 
 ## Special alphabet
   - é : use e/

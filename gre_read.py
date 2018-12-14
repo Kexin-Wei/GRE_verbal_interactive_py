@@ -5,15 +5,8 @@ import xlwt
 from xlutils.copy import copy
 import os
 import platform
-
-
-xlsfile=r"6.xls"
-xlsfile1=r"xdf.xls"
-xlsfile2=r"再要你命3000核心词汇考法精析.xls"
-xlsfile3=r"GRE短语乱序.xlsx"
-file=[xlsfile,xlsfile1,xlsfile2,xlsfile3]
-
-
+#********************************************************************************
+#**************** replace spanish *****************
 def comp( input, word):
     if word.find('\u00E9')>=0:
         #print(operator.eq(input,word),1,input.replace("e/",'\u00E9'))
@@ -23,6 +16,15 @@ def comp( input, word):
         return operator.eq(input.replace("e\\",'\u00E8'),word)
     #print(operator.eq(input,word),3)
     return operator.eq(input,word)
+
+#**********************************************************************************
+#**********************************************************************************
+
+xlsfile=r"6.xls"
+xlsfile1=r"xdf.xls"
+xlsfile2=r"再要你命3000核心词汇考法精析.xls"
+xlsfile3=r"GRE短语乱序.xlsx"
+file=[xlsfile,xlsfile1,xlsfile2,xlsfile3]
 
 
 # choose file
@@ -110,16 +112,20 @@ for x in num_list:
 #********* rest********************8
         # rest
         if pause > 5:
-            input("===\n Maybe a rest and review?")
+            stop=input("===\n Maybe a rest and review?")
+            if comp(stop,"stop!"):
+                break
+            sheet1w.write(0,0,a)
+            bookcp.save(path)
             pause=0
         word[x]=word[x].rstrip()
         print(" Round ",x+1,'/',nrow)
         print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 #***************** file ****************************
-        #6 stufe and xdf 6 stufe
+        #****6 stufe and xdf 6 stufe******
         if index==0 or index==1:
             print(' ',word[x],"\n",explanation[x],'\n',explanation2[x],'\n',explanation3[x])
-        #3000
+        #************* 3000*************
         if index==2:
             print(' \u3010',word[x],'\u3011')
             if explanation[x].find('\u003b')>0:
@@ -129,7 +135,7 @@ for x in num_list:
             else:
                 for y in explanation[x].split('\uff1b'):
                     print(' ',y)
-        # phrase
+        #*********** phrase**************
         if index==3:
             print(' ',word[x])
 #***************** mode *********************************
@@ -140,23 +146,15 @@ for x in num_list:
             #print(comp(str,word[x]),0)
 
             while comp(str,word[x])==0:
-                if comp(str,"stop!") :
-                    break
-                again=1
-                print("!!! Wrong !!!")
-                print(' ',word[x],'\n')
-                str=input(" Please reprint :")
-
-            if again and comp(str,"stop")==0:
-                str=input(" Again to testify :")
-                while comp(str,word[x])==0 :
+                while comp(str,word[x])==0:
                     if comp(str,"stop!") :
                         break
-                    print("\n!! Wrong !!\n")
+                    print("!!! Wrong !!!")
                     print(' ',word[x],'\n')
                     str=input(" Please reprint :")
-
-
+                if comp(str,"stop!") :
+                    break
+                str=input(" Again to testify :")
             if comp(str,"stop!") :
                 break
 

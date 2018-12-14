@@ -2,7 +2,7 @@
 
 A small program showing in terminal, using interactive mode to increase the concentration
 
-## Some need to know
+## Before using
 
 - based on python3
 
@@ -17,21 +17,27 @@ A small program showing in terminal, using interactive mode to increase the conc
   (optional)
   pip3 install operator
   ```
+
 ## How to use
 
- 0 . choose continuing learning or starting a bra new turn
+ 0. Choose continuing learning or starting a bra new turn.
     - type 'no' for a new one
 
- 1 . choose the file by typing the number in terminal
+ 1. Choose the file by typing the number in terminal:
     1. 6 stufe
     2. xdf 6 stufe
     3. 3000
     4. Phrase
 
- 2 . choose the study mode
+ 2. Choose the study mode:
     - typing correct mode(default)
     - fast view mode
 
- 3 . type "stop!" to exit and the record will be noted
+ 3. Type "stop!" to exit and the record will be noted.
+
+ 4. After every 5 words will be stopped and maybe review for better equality.
+
 ## Special alphabet
-  - ēéěè : use e/e\/e\e
+  - é : use e/
+  - è : use e\
+    - like,éclat->e/clat

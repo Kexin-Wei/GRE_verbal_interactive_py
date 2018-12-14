@@ -67,22 +67,7 @@ num=int(sheet1.cell(0,0).value) # last time stop at round num
 #set the list
 num_list=list(range(nrow))
 
-#choose continue or start a new turn
-start=input("\n###########################\n \
-Would you want continue?\n \
-(type 'no' for a new turn)\n\
-###########################\n")
-
-if operator.eq(start,"no") :
-    sheet1w.write(0,0,'0')
-    num=0
-    print(" Start a new turn now!!")
-else:
-    print("\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
-Continue at : Round ",num+1,"\n\
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n")
-
-#choose study mode
+#********************* choose study mode******************
 # 1 typing and recorrecting mode(default)
 # 2 fast view mode
 temp=input("\n****************************\n \
@@ -97,6 +82,21 @@ if mode==1 and index==3:
     print(" Sorry for GRE短语乱序.slx there is only a fast view mode\n")
     input(" Type any key to continue :")
     mode=2
+
+#************* choose continue or start a new turn*****************
+start=input("\n###########################\n \
+Would you want continue?\n \
+(type 'no' for a new turn)\n\
+###########################\n")
+
+if operator.eq(start,"no") :
+    sheet1w.write(0,0,'0')
+    num=0
+    print(" Start a new turn now!!")
+else:
+    print("\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+Continue at : Round ",num+1,"\n\
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n")
 
 #start learning
 for x in num_list:

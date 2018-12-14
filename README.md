@@ -33,3 +33,5 @@ A small program showing in terminal, using interactive mode to increase the conc
     - fast view mode
 
  3 . type "stop!" to exit and the record will be noted
+## Special alphabet
+  - ēéěè : use e/e\/e\e

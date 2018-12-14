@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 import xlrd
 import operator
 import xlwt
@@ -11,6 +12,17 @@ xlsfile1=r"xdf.xls"
 xlsfile2=r"再要你命3000核心词汇考法精析.xls"
 xlsfile3=r"GRE短语乱序.xlsx"
 file=[xlsfile,xlsfile1,xlsfile2,xlsfile3]
+
+def comp( input, word):
+    if word.find('\u00E9')>0:
+        #print(operator.eq(input,word),1)
+        return operator.eq(input.replace('e/','\u00E9'),word)
+    if word.find('\u00E8')>0:
+        #print(operator.eq(input,word),2)
+        return operator.eq(input.replace('e\\','\u00E8'),word)
+    #print(operator.eq(input,word))
+    return operator.eq(input,word)
+
 
 # choose file
 index=int(input(" Choose which one to learn:\n \
@@ -91,56 +103,57 @@ for x in num_list:
     if num and x<num :
         pass
     else:
-        print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-        word[x]=word[x].rstrip()
-        print(" Round ",x+1,'/',nrow,'\n')
 
+        word[x]=word[x].rstrip()
+        print(" Round ",x+1,'/',nrow)
+        print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+#***************** file ****************************
         #6 stufe and xdf 6 stufe
         if index==0 or index==1:
-            print(' ',word[x],"\n ===\n",explanation[x],'\n',explanation2[x],'\n',explanation3[x])
+            print(' ',word[x],"\n",explanation[x],'\n',explanation2[x],'\n',explanation3[x])
         #3000
         if index==2:
-            print(' ',word[x],'\n ===')
+            print(' ',word[x])
             if explanation[x].find('; '):
                 #print("Get this")
                 for y in explanation[x].split(';'):
-                    print(y.lstrip())
+                    print(' ',y.lstrip())
             else:
                 for y in explanation[x].split('；'):
-                    print(y)
+                    print(' ',y)
         # phrase
         if index==3:
             print(' ',word[x])
-
+#***************** mode *********************************
         # mode 1 : reprint mode
         if mode==1:
             str=input("\n Please reprint :")
-
-            while operator.ne(str,word[x]) :
-                if operator.eq(str,"stop!") :
+            #print(comp(str,word[x]),0)
+            while comp(str,word[x])==0:
+                if comp(str,"stop!") :
                     break
                 again=1
                 print("\n!! Wrong !!\n")
                 print(' ',word[x],'\n')
                 str=input(" Please reprint :")
 
-            if again:
+            if again and comp(str,"stop")==0:
                 str=input("\n Again to testify :")
-                while operator.ne(str,word[x]) :
-                    if operator.eq(str,"stop!") :
+                while comp(str,word[x])==0 :
+                    if comp(str,"stop!") :
                         break
                     print("\n!! Wrong !!\n")
                     print(' ',word[x],'\n')
                     str=input(" Please reprint :")
 
 
-            if operator.eq(str,"stop!") :
+            if comp(str,"stop!") :
                 break
 
         # mode 2: fasr view mode
         if mode==2:
             flag=input("\n Waiting.....")
-            if operator.eq(flag,"stop!") :
+            if comp(flag,"stop!") :
                 break
     a=x
 

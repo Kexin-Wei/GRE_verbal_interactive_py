@@ -133,7 +133,7 @@ for x in num_list:
                 if comp(str,"stop!") :
                     break
                 again=1
-                print("\n!! Wrong !!\n")
+                print("!!! Wrong !!!")
                 print(' ',word[x],'\n')
                 str=input(" Please reprint :")
 

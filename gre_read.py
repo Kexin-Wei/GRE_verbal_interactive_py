@@ -13,14 +13,15 @@ xlsfile2=r"再要你命3000核心词汇考法精析.xls"
 xlsfile3=r"GRE短语乱序.xlsx"
 file=[xlsfile,xlsfile1,xlsfile2,xlsfile3]
 
+
 def comp( input, word):
-    if word.find('\u00E9')>0:
-        #print(operator.eq(input,word),1)
-        return operator.eq(input.replace('e/','\u00E9'),word)
-    if word.find('\u00E8')>0:
-        #print(operator.eq(input,word),2)
-        return operator.eq(input.replace('e\\','\u00E8'),word)
-    #print(operator.eq(input,word))
+    if word.find('\u00E9')>=0:
+        #print(operator.eq(input,word),1,input.replace("e/",'\u00E9'))
+        return operator.eq(input.replace("e/",'\u00E9'),word)
+    if word.find('\u00E8')>=0:
+        #print(operator.eq(input,word),2,input.replace("e\\",'\u00E8'))
+        return operator.eq(input.replace("e\\",'\u00E8'),word)
+    #print(operator.eq(input,word),3)
     return operator.eq(input,word)
 
 
@@ -128,7 +129,7 @@ for x in num_list:
         # mode 1 : reprint mode
         if mode==1:
             str=input("\n Please reprint :")
-            #print(comp(str,word[x]),0)
+            print(comp(str,word[x]),0)
             while comp(str,word[x])==0:
                 if comp(str,"stop!") :
                     break
@@ -137,7 +138,7 @@ for x in num_list:
                 print(' ',word[x],'\n')
                 str=input(" Please reprint :")
 
-            if again and comp(str,"stop")==0:
+            if again and comp(str,"stop")!=0:
                 str=input(" Again to testify :")
                 while comp(str,word[x])==0 :
                     if comp(str,"stop!") :

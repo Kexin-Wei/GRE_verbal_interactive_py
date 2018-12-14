@@ -70,18 +70,22 @@ Continue at : Round ",num+1,"\n\
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n")
 
 #choose study mode
-# 1 typing and recorrecting mode
+# 1 typing and recorrecting mode(default)
 # 2 fast view mode
-mode=int(input("\n****************************\n \
+temp=input("\n****************************\n \
 Choose the study mode :\n \
-1. Typing correct mode\n \
+1. Typing correct mode(default)\n \
 2. Fast view mode\n\
-****************************\n"))
+****************************\n")
+mode=1
+if temp==str(2):
+    mode=2
 if mode==1 and index==3:
     print(" Sorry for GRE短语乱序.slx there is only a fast view mode\n")
     input(" Type any key to continue :")
     mode=2
 
+#start learning
 for x in num_list:
     again=0
     if num and x<num :
@@ -97,8 +101,13 @@ for x in num_list:
         #3000
         if index==2:
             print(' ',word[x],'\n ===')
-            for y in explanation[x].split('；'):
-                print(y)
+            if explanation[x].find('; '):
+                #print("Get this")
+                for y in explanation[x].split(';'):
+                    print(y.lstrip())
+            else:
+                for y in explanation[x].split('；'):
+                    print(y)
         # phrase
         if index==3:
             print(' ',word[x])

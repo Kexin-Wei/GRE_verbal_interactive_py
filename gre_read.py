@@ -138,7 +138,7 @@ for x in num_list:
                 str=input(" Please reprint :")
 
             if again and comp(str,"stop")==0:
-                str=input("\n Again to testify :")
+                str=input(" Again to testify :")
                 while comp(str,word[x])==0 :
                     if comp(str,"stop!") :
                         break

@@ -32,9 +32,10 @@ A small program showing in terminal, using interactive mode to increase the conc
 
 4. Type "stop!" at any place to exit and the record will be noted.
 
-5. After every 6 words will be stopped and maybe review for better equality, also file autosaved.
+5. After every 5 words will be stopped and maybe review for better equality, also file autosaved.
 
 ## Special alphabet
   - é : use e/
   - è : use e\
     - like "éclat" just type "e/clat"
+- ï : use i..

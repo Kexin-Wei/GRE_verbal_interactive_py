@@ -14,6 +14,8 @@ def comp( input, word):
     if word.find('\u00E8')>=0:
         #print(operator.eq(input,word),2,input.replace("e\\",'\u00E8'))
         return operator.eq(input.replace("e\\",'\u00E8'),word)
+    if word.find('\u00EF')>=0:
+        return operator.eq(input.replace("i..",'\u00EF'),word)
     #print(operator.eq(input,word),3)
     return operator.eq(input,word)
 
@@ -111,14 +113,13 @@ for x in num_list:
     else:
 #********* rest********************
         # rest
-        if pause > 5:
+        if pause > 4:
             print("===\n Maybe a rest and review?")
             stop=input(review)
             if comp(stop,"stop!"):
                 break
             sheet1w.write(0,0,a)
             bookcp.save(path)
-            print(review)
             review=""
             pause=0
         word[x]=word[x].rstrip()
@@ -145,7 +146,7 @@ for x in num_list:
 #***************** mode *********************************
         # mode 1 : reprint mode
         if mode==1:
-            str=input("\n Please reprint :")
+            str=input(" Please reprint :")
 
             #print(comp(str,word[x]),0)
 
@@ -153,7 +154,7 @@ for x in num_list:
                 while comp(str,word[x])==0:
                     if comp(str,"stop!") :
                         break
-                    print("!!! Wrong !!!")
+                    print(" !!! Wrong !!!")
                     print(' ',word[x],'\n')
                     str=input(" Please reprint :")
                 if comp(str,"stop!") :

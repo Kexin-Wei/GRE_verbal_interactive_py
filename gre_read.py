@@ -72,11 +72,11 @@ num_list=list(range(nrow))
 #********************* choose study mode******************
 # 1 typing and recorrecting mode(default)
 # 2 fast view mode
-temp=input("\n****************************\n \
+temp=input("\n************************************\n \
 Choose the study mode :\n \
 1. Typing correct mode(default)\n \
 2. Fast view mode\n\
-****************************\n")
+************************************\n")
 mode=1
 if temp==str(2):
     mode=2
@@ -86,19 +86,19 @@ if mode==1 and index==3:
     mode=2
 
 #************* choose continue or start a new turn*****************
-start=input("\n###########################\n \
+start=input("\n###################################\n \
 Would you want continue?\n \
 (type 'no' for a new turn)\n\
-###########################\n")
+###################################\n")
 
 if operator.eq(start,"no") :
     sheet1w.write(0,0,'0')
     num=0
     print(" Start a new turn now!!")
 else:
-    print("\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
+    print("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n \
 Continue at : Round ",num+1,"\n\
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n")
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n")
 
 #for pause after 5 words
 pause=0;
@@ -120,7 +120,7 @@ for x in num_list:
             pause=0
         word[x]=word[x].rstrip()
         print(" Round ",x+1,'/',nrow)
-        print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
 #***************** file ****************************
         #****6 stufe and xdf 6 stufe******
         if index==0 or index==1:

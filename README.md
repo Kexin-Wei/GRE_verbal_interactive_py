@@ -4,17 +4,15 @@ A small program showing in terminal, using interactive mode to increase the conc
 
 ## Before using
 
+- Fit for linux and windows
 - Based on python3.7
-
 - Package needed : xlrd, xlwt,xltuils
 
-  ```
-  pip3 install xlrd
-  pip3 install xlwt
-  pip3 install xltuils
-  ```
-
-- Fit for linux and windows
+    ```
+    pip3 install xlrd
+    pip3 install xlwt
+    pip3 install xltuils
+    ```
 
 ## How to use
 

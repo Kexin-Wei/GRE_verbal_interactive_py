@@ -101,26 +101,30 @@ Continue at : Round ",num+1,"\n\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n")
 
 #for pause after 5 words
-pause=0;
+pause=0
+review=""
 #start learning
 for x in num_list:
     again=0
-
     if num and x<num :
         pass
     else:
-#********* rest********************8
+#********* rest********************
         # rest
         if pause > 5:
-            stop=input("===\n Maybe a rest and review?")
+            print("===\n Maybe a rest and review?")
+            stop=input(review)
             if comp(stop,"stop!"):
                 break
             sheet1w.write(0,0,a)
             bookcp.save(path)
+            print(review)
+            review=""
             pause=0
         word[x]=word[x].rstrip()
+        review=review+" "+word[x]+"\n"
         print(" Round ",x+1,'/',nrow)
-        print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+        print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
 #***************** file ****************************
         #****6 stufe and xdf 6 stufe******
         if index==0 or index==1:

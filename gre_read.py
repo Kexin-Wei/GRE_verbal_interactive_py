@@ -120,7 +120,7 @@ for x in num_list:
             pause=0
         word[x]=word[x].rstrip()
         print(" Round ",x+1,'/',nrow)
-        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+        print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
 #***************** file ****************************
         #****6 stufe and xdf 6 stufe******
         if index==0 or index==1:

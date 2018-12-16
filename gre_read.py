@@ -129,8 +129,8 @@ for x in num_list:
         if pause==4 :
             review=review+word[x]
         else:
-            review= review+word[x]+"|"
-        print(" Round ",x+1,'/',nrow)
+            review= review+word[x]+'|'
+        print("\n Round ",x+1,'/',nrow)
         print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
 #***************** file ****************************
         #****6 stufe and xdf 6 stufe******
@@ -139,13 +139,16 @@ for x in num_list:
         #************* 3000*************
         if index==2:
             print(' \u3010',word[x],'\u3011')
+            z=1
             if explanation[x].find('\u003b')>0:
                 #print("Get this")
                 for y in explanation[x].split(';'):
-                    print(' ',y.lstrip())
+                    print(' ',z,'.'+y.lstrip())
+                    z=z+1
             else:
                 for y in explanation[x].split('\uff1b'):
-                    print(' ',y)
+                    print(' ',z,'.'+y)
+                    z=z+1
         #*********** phrase**************
         if index==3:
             print(' ',word[x])

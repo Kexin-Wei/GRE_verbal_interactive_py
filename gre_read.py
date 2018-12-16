@@ -114,7 +114,7 @@ for x in num_list:
 #********* rest********************
         # rest
         if pause > 4:
-            print("===\n Maybe a rest and review?")
+            print("=======\n Maybe a rest and review?")
             stop=input(review)
             if comp(stop,"stop!"):
                 break
@@ -155,7 +155,7 @@ for x in num_list:
                     if comp(str,"stop!") :
                         break
                     print(" !!! Wrong !!!")
-                    print(' ',word[x],'\n')
+                    print(' ',word[x])
                     str=input(" Please reprint :")
                 if comp(str,"stop!") :
                     break

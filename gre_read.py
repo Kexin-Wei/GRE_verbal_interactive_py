@@ -114,16 +114,22 @@ for x in num_list:
 #********* rest********************
         # rest
         if pause > 4:
-            print("=======\n Maybe a rest and review?")
-            stop=input(review)
-            if comp(stop,"stop!"):
-                break
             sheet1w.write(0,0,a)
             bookcp.save(path)
+            print("=======\n Maybe a rest and review?")
+            for y in review.split('|'):
+                stop=input("  "+y)
+                if comp(stop,"stop!"):
+                    break
+            if comp(stop,"stop!"):
+                break
             review=""
             pause=0
         word[x]=word[x].rstrip()
-        review=review+" "+word[x]+"\n"
+        if pause==4 :
+            review=review+word[x]
+        else:
+            review= review+word[x]+"|"
         print(" Round ",x+1,'/',nrow)
         print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
 #***************** file ****************************

@@ -33,6 +33,7 @@ A small program showing in terminal, using interactive mode to increase the conc
 4. Type "stop!" at any place to exit and the record will be noted.
 
 5. After every 5 words will be stopped and maybe review for better equality, also file autosaved.
+   - in the review, when word is showed, remind the meaning of it and type any key to continue reviewing
 
 ## Special alphabet
   - é : use e/

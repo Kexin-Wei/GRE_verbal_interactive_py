@@ -5,9 +5,10 @@ import xlwt
 from xlutils.copy import copy
 import os
 import platform
+import re
 #********************************************************************************
 #**************** replace spanish *****************
-def comp( input, word):
+def comp( input, word, wordlist):
     if word.find('\u00E9')>=0:
         #print(operator.eq(input,word),1,input.replace("e/",'\u00E9'))
         return operator.eq(input.replace("e/",'\u00E9'),word)
@@ -16,9 +17,28 @@ def comp( input, word):
         return operator.eq(input.replace("e\\",'\u00E8'),word)
     if word.find('\u00EF')>=0:
         return operator.eq(input.replace("i..",'\u00EF'),word)
+    if input.find(":find ")>=0 and wordlist!=0:#close function
+        search=input.split(' ',1)[1]
+        #print("here")
+        x=findw(search,wordlist)
     #print(operator.eq(input,word),3)
     return operator.eq(input,word)
 
+#******************find the word *****************
+def findw(sword,words):
+    for aim in words:
+        aim2=aim.rstrip()
+        if sword.find('*')>=0:
+            search=r""+sword.replace('*',"\*")
+        else:
+            search=r""+sword
+        if re.search(search,aim2):
+            x=words.index(aim)
+            print(" "+aim)
+            flagg=1
+    if flagg==0:
+        print("No such a word")
+    return
 #**********************************************************************************
 #**********************************************************************************
 
@@ -54,7 +74,7 @@ nrow=sheet0.nrows
 
 # get explanation from different file
 if index !=3:
-    explanation=sheet0.col_values(1)
+    explanation1=sheet0.col_values(1)
 #print(explanation)
 if index==1 or index==0:
     explanation2=sheet0.col_values(2)  #2,3 for 6.xls and xdf.xls
@@ -119,9 +139,9 @@ for x in num_list:
             print("=======\n Maybe a rest and review?")
             for y in review.split('|'):
                 stop=input("  "+y)
-                if comp(stop,"stop!"):
+                if comp(stop,"stop!",0):
                     break
-            if comp(stop,"stop!"):
+            if comp(stop,"stop!",0):
                 break
             review=""
             pause=0
@@ -135,18 +155,18 @@ for x in num_list:
 #***************** file ****************************
         #****6 stufe and xdf 6 stufe******
         if index==0 or index==1:
-            print(' ',word[x],"\n",explanation[x],'\n',explanation2[x],'\n',explanation3[x])
+            print(' ',word[x],"\n",explanation1[x],'\n',explanation2[x],'\n',explanation3[x])
         #************* 3000*************
         if index==2:
             print(' \u3010',word[x],'\u3011')
             z=1
-            if explanation[x].find('\u003b')>0:
+            if explanation1[x].find('\u003b')>0:
                 #print("Get this")
-                for y in explanation[x].split(';'):
+                for y in explanation1[x].split(';'):
                     print(' ',z,'.'+y.lstrip())
                     z=z+1
             else:
-                for y in explanation[x].split('\uff1b'):
+                for y in explanation1[x].split('\uff1b'):
                     print(' ',z,'.'+y)
                     z=z+1
         #*********** phrase**************
@@ -159,23 +179,23 @@ for x in num_list:
 
             #print(comp(str,word[x]),0)
 
-            while comp(str,word[x])==0:
-                while comp(str,word[x])==0:
-                    if comp(str,"stop!") :
+            while comp(str,word[x],word)==0:
+                while comp(str,word[x],0)==0:
+                    if comp(str,"stop!",0) :
                         break
                     print(" !!! Wrong !!!")
                     print(' ',word[x])
                     str=input(" Please reprint :")
-                if comp(str,"stop!") :
+                if comp(str,"stop!",0) :
                     break
                 str=input(" Again to testify :")
-            if comp(str,"stop!") :
+            if comp(str,"stop!",0) :
                 break
 
         # mode 2: fasr view mode
         if mode==2:
             flag=input("\n Waiting.....")
-            if comp(flag,"stop!") :
+            if comp(flag,"stop!",word) :
                 break
         pause=pause+1
     a=x

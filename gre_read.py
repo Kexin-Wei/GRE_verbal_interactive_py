@@ -158,7 +158,7 @@ for x in num_list:
             print(' ',word[x],"\n",explanation1[x],'\n',explanation2[x],'\n',explanation3[x])
         #************* 3000*************
         if index==2:
-            print(' \u3010',word[x],'\u3011')
+            input(' \u3010'+word[x]+'\u3011')
             z=1
             if explanation1[x].find('\u003b')>0:
                 #print("Get this")

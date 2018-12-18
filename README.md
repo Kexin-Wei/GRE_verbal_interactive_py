@@ -14,6 +14,15 @@ A small program showing in terminal, using interactive mode to increase the conc
     pip3 install xltuils
     ```
 
+## Supporting
+- Regular Experssion
+  - for "\*", need to type ""\\\\\*""
+- Special alphabet
+  - é : use e/
+  - è : use e\
+    - like "éclat" just type "e/clat"
+  - ï : use i..
+
 ## How to use
 
 1. Choose continuing learning or starting a bra new turn.
@@ -47,9 +56,3 @@ A small program showing in terminal, using interactive mode to increase the conc
 
 ### Tips :
    > in the review, when word is showed, remind the meaning of it and type any key to continue reviewing
-
-## Special alphabet
-  - é : use e/
-  - è : use e\
-    - like "éclat" just type "e/clat"
-- ï : use i..

@@ -6,27 +6,31 @@ from xlutils.copy import copy
 import os
 import platform
 import re
+nturn=9
 #********************************************************************************
 #**************** replace spanish *****************
 def inputjudge( outprint, x, index, wordlist,explanation):
     # input sepcial word progress
-    in=input(outprint)
+    wordin=input(outprint)
     if wordlist[x].find('\u00E9')>=0:
         #print(operator.eq(input,word),1,input.replace("e/",'\u00E9'))
-        operator.eq(input.replace("e/",'\u00E9'),word)
+        wordin.replace("e/",'\u00E9')
     if wordlist[x].find('\u00E8')>=0:
         #print(operator.eq(input,word),2,input.replace("e\\",'\u00E8'))
-        operator.eq(input.replace("e\\",'\u00E8'),word)
+        wordin.replace("e\\",'\u00E8')
     if wordlist[x].find('\u00EF')>=0:
-        operator.eq(input.replace("i..",'\u00EF'),word)
+        wordin.replace("i..",'\u00EF')
 
-    if in.find(":f ")>=0:#close function
-        sword=in.split(' ',1)[1]
+    if wordin.find(":f ")>=0:#close function
+        sword=wordin.split(' ',1)[1]
         #print("here")
         findw(sword,index,wordlist,explanation)
+        if mode==1:
         #need to input judge agian
-        return inputjudge("\n Please reinput again: ",x,index,wordlist,explanation)
-    elif input.find(":s ")>=0:
+            return inputjudge("\n Please reinput again: ",x,index,wordlist,explanation)
+        else:
+            return inputjudge("\n Waiting.... ",x,index,wordlist,explanation)
+    elif wordin.find(":s")>=0:
         return ":s"
     else:
     #print(operator.eq(input,word),3)
@@ -34,41 +38,48 @@ def inputjudge( outprint, x, index, wordlist,explanation):
 
 #****************** find the word *****************
 def findw(sword,index,wordlist,explanation):
+    flagg=0
     for aim in wordlist:
         aim2=aim.rstrip()
         # special word progress
-        if sword.find('*')>=0:
-            search=r""+sword.replace('*',"\*")
+        if sword.find('\\*')>=0:
+            search=r""+sword.replace('\\*',"\*")
         else:
             search=r""+sword
         if re.search(search,aim2):
             x=wordlist.index(aim)
-            printwe(x,index,wordlist,explanation)
+            printwe(x,index,wordlist,explanation,0)
             flagg=1
     if flagg==0:
         print("No such a word")
     return
 
 #******************* print ************************
-def printwe(x,index,wordlist,explanation):
+def printwe(x,index,wordlist,explanation,flag):
     #nexplana=len(explana)
     #****6 stufe and xdf 6 stufe******
+    wordlist[x]=wordlist[x].rstrip()
     if index==0 or index==1:
         print(' ',wordlist[x])
         print(explanation[1][x],'\n',explanation[2][x],'\n',explanation[3][x])
     #************* 3000*************
     if index==2:
-        input(' \u3010'+wordlist[x]+'\u3011')
-        z=1
+        if flag==0:
+            print(' \u3010'+wordlist[x]+'\u3011')
+        else:
+            input(' \u3010'+wordlist[x]+'\u3011')
+        #z=1
         if explanation[1][x].find('\u003b')>0:
             #print("Get this")
             for y in explanation[1][x].split(';'):
-                print(' ',z,'.'+y.lstrip())
-                z=z+1
+                print(" "+y.lstrip())
+                #print(' ',z,'.'+y.lstrip())
+                #z=z+1
         else:
             for y in explanation[1][x].split('\uff1b'):
-                print(' ',z,'.'+y)
-                z=z+1
+                print(" "+y)
+                #print(' ',z,'.'+y)
+                #z=z+1
     #*********** phrase**************
     if index==3:
         print(' ',wordlist[x])
@@ -173,9 +184,7 @@ for x in num_list:
         pass
     else:
 #********* rest********************
-        if pause > 4:
-            sheet1w.write(0,0,a)
-            bookcp.save(path)
+        if pause > nturn:
             print("=======\n Maybe a rest and review?")
             for y in review.split('|'):
                 stop=inputjudge("  "+y,x,index,wordlist,explanation)
@@ -185,23 +194,25 @@ for x in num_list:
                 break
             review=""
             pause=0
+            sheet1w.write(0,0,a)
+            bookcp.save(path)
         wordlist[x]=wordlist[x].rstrip()
-        if pause==4 :
+        if pause==nturn :
             review=review+wordlist[x]
         else:
             review= review+wordlist[x]+'|'
         print("\n Round ",x+1,'/',nrow)
         print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
 #***************** file ****************************
-        printwe(x,index,wordlist,explanation)
+        printwe(x,index,wordlist,explanation,1)
 #***************** mode *********************************
         # mode 1 : reprint mode
         if mode==1:
             ToF=inputjudge(" Please reprint :", x, index, wordlist,explanation)
             if operator.eq(ToF,":s") :
                 break
-            while ToF:
-                while ToF:
+            while ToF==0:
+                while ToF==0:
                     print(" !!! Wrong !!!")
                     print(' ',wordlist[x])
                     ToF=inputjudge(" Please reprint :", x, index, wordlist,explanation)
@@ -213,8 +224,8 @@ for x in num_list:
 
         # mode 2: fasr view mode
         if mode==2:
-            flag=inputjudge(" Waiting.....", x, index, wordlist,explanation)
-            if operator.eq(flag,":s") :
+            flag=inputjudge(" Waiting....", x, index, wordlist,explanation)
+            if operator.eq(flag,":s"):
                 break
         pause=pause+1
 
